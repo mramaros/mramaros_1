@@ -1,1 +1,1 @@
-<spin>"color=green"# mramaros_1</span>
+# mramaros_1
