@@ -6,7 +6,7 @@
 /*   By: mramaros <mramaros@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 21:53:14 by mramaros          #+#    #+#             */
-/*   Updated: 2026/02/25 21:14:13 by mramaros         ###   ########.fr       */
+/*   Updated: 2026/02/25 21:25:40 by mramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <unistd.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+# endif
+
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 1
 # endif
 
 char	*ft_get_text(int fd, char *line);
