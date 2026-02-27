@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramaros <mramaros@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: mramaros <mramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 17:00:49 by mramaros          #+#    #+#             */
-/*   Updated: 2026/02/25 21:17:41 by mramaros         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:56:59 by mramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
 
 char	*ft_get_text(int fd, char *stash)
 {
@@ -78,9 +78,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!stash)
-	{
 		stash = ft_strdup("");
-	}
 	stash = ft_get_text(fd, stash);
 	if (!stash)
 		return (NULL);
