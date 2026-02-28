@@ -41,22 +41,31 @@ You can change the buffer size during compilation:
 	cc -D BUFFER_SIZE=1000 ...
 ```
 <span style="color:orange">Example usage:</span>
+
+__<span style="color:green">NB:</span>__ you need create the file .txt to make a test, so you need to follow this process:
+```bash
+	echo "(content)" >> test.txt
+```
 ```c
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "get_next_line.h"
 
-int main(void)
+int	main(void)
 {
-	int fd = open("file.txt", O_RDONLY);
-	char *line;
+	int		fd;
+	char	*line;
+	int		i;
 
+	i = 0;
+	fd = open("test.txt", O_RDONLY);
 	if (fd < 0)
 		return (1);
-
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s", line);
+		i++;
+		printf("line %d :%s", i, line);
 		free(line);
 	}
 	close(fd);
@@ -100,9 +109,7 @@ Reading loop:
 ```
 This ensures:
 
-* Reading stops as soon as a full line is available
-
-* Or when EOF is reached
+Reading stops as soon as a full line is available
 
 After reading:
 ```c
@@ -131,4 +138,55 @@ This function extracts the next line from stash.
 ```c
 	return ((char *)ft_substr(stash, 0, i));
 ```
+This creates a newly allocated string that will be returned to the user.
 
+__4. Stash Cleaning -> clean_stash__
+```c
+	static char *clean_stash(char *stash)
+```
+After extracting the line, the remaining content must be preserved for the next call.
+
+<span style="color:orange">Logic:</span>
+
+* Find the newline
+
+* If no newline → free stash and return NULL
+
+* Otherwise:
+```c
+	new_stach = ft_substr(stash, (i + 1), ft_strlen(stash) - i - 1);
+	free(stash);
+	return (new_stach);
+```
+So the stash evolves like this:
+```
+	Before extraction:
+	"Line1\nLine2\nLi"
+
+	After returning "Line1\n":
+	"Line2\nLi"
+```
+__5. Global Execution Flow__
+
+This implementation follows this precise order:
+
+* Initialize stash if needed
+
+* Fill stash using ft_get_text
+
+* Extract line using get_stach
+
+* Clean stash using clean_stash
+
+* Return the extracted line
+
+# Ressources
+
+* <span style="color:red">Youtube</span> : mentor the beginning of get_next_line with tutorials and stash variable understanding
+* <span style="color:purple">PEER TO PEER</span> : debugging assistance and facilitates projects
+
+
+# AI USAGE
+* main tester for each function
+* It explains some of the tiny errors in my code.
+* help with readme layout

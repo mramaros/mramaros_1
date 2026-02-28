@@ -6,10 +6,11 @@
 /*   By: mramaros <mramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 17:00:49 by mramaros          #+#    #+#             */
-/*   Updated: 2026/02/27 14:56:59 by mramaros         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:25:55 by mramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
 char	*ft_get_text(int fd, char *stash)
 {
